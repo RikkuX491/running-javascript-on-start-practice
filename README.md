@@ -36,22 +36,11 @@ Write your code in the `index.js` file. There is some starter code provided in `
 
 These are your tasks:
 
-- Add an event listener to the `document` object that will allow the `document` object to listen for the `DOMContentLoaded` event and will call the `updateDOMElements()` function in response to the `DOMContentLoaded` event.
-- `updateDOMElements()`: The `updateDOMElements()` function has been declared for you, but you will need to write the code that should go inside of this function. When the `updateDOMElements()` function is called, the following actions should take place:
-  - The `displayMovieDetails()` function is called.
-  - Clears the contents of the `<ul>` element with the id of `films` so it no longer has any elements nested inside it.
-  - Iterate over the array stored in the `movieTitles` variable using an array iterator method such as `forEach()`. For each of the movie titles in the array stored in the `movieTitles` variable, the `addMovieTitleToList()` function is called and the movie title is passed in as an argument to the `addMovieTitleToList()` function.
-- `displayMovieDetails()`: The `displayMovieDetails()` function has been declared for you, but you will need to write the code that should go inside of this function. When the `displayMovieDetails()` function is called, the following actions should take place:
-  - The `textContent` attribute for the `<div>` element with the id `title` is set to the value of the `title` key for the `object` stored in the `firstMovie` variable.
-  - The `textContent` attribute for the `<div>` element with the id `runtime` is set to the value of the `runtime` key for the `object` stored in the `firstMovie` variable.
-  - The `textContent` attribute for the `<div>` element with the id `description` is set to the value of the `description` key for the `object` stored in the `firstMovie` variable.
-  - The `textContent` attribute for the `<span>` element with the id `showtime` is set to the value of the `showtime` key for the `object` stored in the `firstMovie` variable.
-  - The `src` attribute for the `<img>` element with the id `poster` is set to the value of the `poster` key for the `object` stored in the `firstMovie` variable.
-- `addMovieTitleToList(movieTitle)`: The `addMovieTitleToList()` function has been declared for you, but you will need to write the code that should go inside of this function. It has 1 parameter named `movieTitle` whose value should be a `string` that has the title of a movie, when the correct value is passed as an argument into the function. When the `addMovieTitleToList()` function is called, the following actions should take place:
-  - A new `<li>` element is created.
-  - The `className` attribute for the `<li>` element is set to `film item`.
-  - The `textContent` attribute for the `<li>` element is set to the value of the `movieTitle` variable (the parameter for the `addMovieTitleToList()` function).
-  - The `<li>` element is appended to the `<ul>` element with the id of `films`.
+1. Add an event listener to the `document` object that will allow the `document` object to listen for the `DOMContentLoaded` event and will call the `updateDOMElements()` function in response to the `DOMContentLoaded` event.
+2. `updateDOMElements()`: The `updateDOMElements()` function has been declared for you, but you will need to write the code that should go inside of this function. When the `updateDOMElements()` function is called, the following actions should take place:
+    - The `displayMovieDetails()` function is called.
+    - Clears the contents of the `<ul>` element with the id of `films` so it no longer has any elements nested inside it.
+    - Iterate over the array stored in the `movieTitles` variable using an array iterator method such as `forEach()`. For each of the movie titles in the array stored in the `movieTitles` variable, the `addMovieTitleToList()` function is called and the movie title is passed in as an argument to the `addMovieTitleToList()` function.
 
 ## Solution
 
@@ -74,24 +63,25 @@ function updateDOMElements(){
 }
 
 function displayMovieDetails(){
-    const titleElement = document.getElementById('title');
-    titleElement.textContent = firstMovie.title;
-    const runtimeElement = document.getElementById('runtime');
-    runtimeElement.textContent = firstMovie.runtime;
-    const descriptionElement = document.getElementById('description');
-    descriptionElement.textContent = firstMovie.description;
-    const showtimeElement = document.getElementById('showtime');
-    showtimeElement.textContent = firstMovie.showtime;
-    const posterElement = document.getElementById('poster');
-    posterElement.src = firstMovie.poster;
+    const titleDiv = document.getElementById('title');
+    titleDiv.textContent = firstMovie.title;
+    const runtimeDiv = document.getElementById('runtime');
+    runtimeDiv.textContent = firstMovie.runtime;
+    const descriptionDiv = document.getElementById('description');
+    descriptionDiv.textContent = firstMovie.description;
+    const showtimeSpan = document.getElementById('showtime');
+    showtimeSpan.textContent = firstMovie.showtime;
+    const posterImage = document.getElementById('poster');
+    posterImage.src = firstMovie.poster;
+    posterImage.alt = firstMovie.title;
 }
 
 function addMovieTitleToList(movieTitle){
-    const filmsListElement = document.getElementById('films');
     const liElement = document.createElement('li');
     liElement.className = "film item";
     liElement.textContent = movieTitle;
-    filmsListElement.appendChild(liElement);
+    const filmsList = document.getElementById('films');
+    filmsList.appendChild(liElement);
 }
 
 document.addEventListener('DOMContentLoaded', updateDOMElements);
